@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -32,9 +32,9 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
+          java-version: "17"
 
-      - name: Cache SonarCloud packages
+      - name: Cache SonarCloud Packages
         uses: actions/cache@v4
         with:
           path: ~/.sonar/cache
@@ -42,14 +42,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-sonar
 
-      - name: SonarCloud Scan
+      - name: Generate Sonar Project Key
+        shell: bash
+        run: |
+          echo "PROJECT_KEY=${GITHUB_REPOSITORY//\//_}" >> $GITHUB_ENV
+          echo "PROJECT_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
+
+      - name: Run SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-            -Dsonar.organization=venessa3105-hash
+            -Dsonar.projectKey=${{ env.PROJECT_KEY }}
+            -Dsonar.projectName=${{ env.PROJECT_NAME }}
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
             -Dsonar.sources=.
-            -Dsonar.python.version=3
             -Dsonar.sourceEncoding=UTF-8
+            -Dsonar.qualitygate.wait=true
