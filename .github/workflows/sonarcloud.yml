@@ -42,11 +42,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-sonar
 
-      - name: Generate Sonar Project Key
-        shell: bash
+      - name: Verify Sonar Configuration
         run: |
-          echo "PROJECT_KEY=${GITHUB_REPOSITORY//\//_}" >> $GITHUB_ENV
-          echo "PROJECT_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Project Key: ${{ secrets.SONAR_PROJECT_KEY }}"
+          echo "Organization: ${{ secrets.SONAR_ORGANIZATION }}"
 
       - name: Run SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5
@@ -54,8 +54,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=${{ env.PROJECT_KEY }}
-            -Dsonar.projectName=${{ env.PROJECT_NAME }}
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
             -Dsonar.sources=.
             -Dsonar.sourceEncoding=UTF-8
