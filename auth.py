@@ -1,9 +1,10 @@
-import pickle
+import json
+import os
 
-SECRET_PASSWORD = "admin123"
+SECRET_PASSWORD = os.getenv("SECRET_PASSWORD")
 
 def deserialize(data):
-    return pickle.loads(data)
+    return json.loads(data)
 
 def check(password):
     return password == SECRET_PASSWORD
