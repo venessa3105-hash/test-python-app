@@ -9,7 +9,7 @@ on:
 
 jobs:
   security-review:
-    uses: shreyasharmaa516/AI-Vulnerability-Scanner-/.github/workflows/security-review.yml@feature/multi-repo-support
+    uses: shreyasharmaa516/AI-Vulnerability-Scanner-/.github/workflows/security-review.yml@main
 
     with:
       repository: ${{ github.repository }}
