@@ -7,8 +7,13 @@ on:
 
   workflow_dispatch:
 
+permissions:
+  contents: write
+  issues: write
+
 jobs:
   security-review:
+
     uses: shreyasharmaa516/AI-Vulnerability-Scanner-/.github/workflows/security-review.yml@main
 
     with:
