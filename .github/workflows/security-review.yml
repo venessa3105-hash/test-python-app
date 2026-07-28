@@ -20,6 +20,7 @@ jobs:
       repository: ${{ github.repository }}
       branch: ${{ github.ref_name }}
       commit: ${{ github.sha }}
+      organization: venessa3105-hash
 
     secrets:
       TARGET_GITHUB_TOKEN: ${{ secrets.TARGET_GITHUB_TOKEN }}
