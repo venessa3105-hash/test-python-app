@@ -22,3 +22,4 @@ Contains intentionally insecure code for testing purposes.
 - Trigger workflow test
 - Trigger workflow test
 - Trigger workflow test
+- Trigger workflow test
