@@ -1,7 +1,9 @@
 from flask import Flask, request
 import os
 import hashlib
-
+import subprocess
+def insecure_command(cmd):
+    subprocess.run(cmd, shell=True)
 app = Flask(__name__)
 
 API_KEY = "1234567890abcdef"
