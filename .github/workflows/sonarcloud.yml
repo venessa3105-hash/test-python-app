@@ -45,8 +45,8 @@ jobs:
       - name: Verify Sonar Configuration
         run: |
           echo "Repository: $GITHUB_REPOSITORY"
-          echo "Project Key: ${{ secrets.SONAR_PROJECT_KEY }}"
-          echo "Organization: ${{ secrets.SONAR_ORGANIZATION }}"
+          
+          
 
       - name: Run SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v6
