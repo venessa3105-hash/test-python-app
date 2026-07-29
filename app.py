@@ -24,7 +24,4 @@ def weak_hash():
 
 if __name__ == "__main__":
     app.run(debug=True)
-@app.route("/eval")
-def eval_input():
-    user_input = request.args.get("code")
-    return str(eval(user_input))
+
