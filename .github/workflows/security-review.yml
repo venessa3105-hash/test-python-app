@@ -20,6 +20,7 @@ jobs:
       branch: ${{ github.ref_name }}
       commit: ${{ github.sha }}
       organization: venessa3105-hash
+      scanner_repository: venessa3105-hash/AI-Vulnerability-Scanner-
     secrets:
       TARGET_GITHUB_TOKEN: ${{ secrets.TARGET_GITHUB_TOKEN }}
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
